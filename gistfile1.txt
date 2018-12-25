@@ -116,3 +116,4 @@ Resources:
     Properties:
       LogGroupName: !Sub '/aws/firehose/${Deliverystream}'
       RetentionInDays: !Ref 'CWlogsFirehoseExpiredate'
+
