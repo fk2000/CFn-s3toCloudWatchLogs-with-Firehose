@@ -5,7 +5,7 @@ Parameters:
     Description: 'Input target log group'
     Type: String
     Default: ''
-  TargetS3bucket:
+  TargetS3bucketName:
     Description: 'Input S3 bucket name to save'
     Type: String
     Default: ''
@@ -28,7 +28,7 @@ Resources:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
-      BucketName: !Ref 'TargetS3bucket'
+      BucketName: !Ref 'TargetS3bucketName'
       LifecycleConfiguration:
         Rules:
           - Id: AutoDelete
@@ -107,8 +107,8 @@ Resources:
               - s3:ListBucketMultipartUploads
               - s3:PutObject
             Resource:
-              - !Sub 'arn:aws:s3:::${TargetS3bucket}'
-              - !Sub 'arn:aws:s3:::${TargetS3bucket}*'
+              - !Sub 'arn:aws:s3:::${TargetS3bucketName}'
+              - !Sub 'arn:aws:s3:::${TargetS3bucketName}*'
       Roles:
         - !Ref 'DeliveryRole'
   LogGroupFirehose:
